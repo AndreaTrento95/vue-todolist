@@ -13,6 +13,42 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+
+    <div id="app" class="container">
+
+        <div class="logo">
+            <img src="assets/img/logo.png" alt="">
+        </div>
+
+        <div class="new-todo">
+
+            <h4 v-if="alertActive">Attenzione: inserire un testo più lungo</h4>
+
+            <input v-model="strTodo" type="text" placeholder="Nuovo todo" @keyup.enter="addTodo">
+            <button @click="addTodo">AGGIUNGI</button>
+
+        </div>
+        <div class="todos-container">
+
+            <ul>
+                <li
+                    v-for="(todo, index ) in todos"
+                    :class="(todo.checked) ? 'checked' : null "
+                    :style="( index === todos.length )- 1 ? 'border: none' : null "
+                    @click="todo.checked = !todo.checked"
+                >
+                    {{ todo.todo }}
+                    <i
+                        @click.stop="removeTodo(index)"
+                        class="fas fa-times">
+                    </i>
+                </li>
+                
+            </ul>
+
+        </div>
+
+    </div>
     
 
 
